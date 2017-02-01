@@ -5,7 +5,6 @@ const config = require('./webpack.config.dev');
 
 const app = express();
 const compiler = webpack(config);
-const rootDirectory = path.resolve('.');
 const port = process.env.PORT || 3000;
 
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -16,10 +15,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(rootDirectory, 'src', 'index.html'));
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
-app.listen(port, 'localhost', err => {
+app.listen(port, 'localhost', (err) => {
     /* eslint-disable */
     if (err) console.log(err);
     else console.log(`Port: ${port}`);
