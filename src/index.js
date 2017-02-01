@@ -30,4 +30,5 @@ app({
       </div>
     `;
   },
+  root: document.getElementById('root'),
 });
